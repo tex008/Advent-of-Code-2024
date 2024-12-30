@@ -1000,22 +1000,23 @@ def main():
 94550   80760
 61539   20843"""
 
-    first_list = []
-    second_list = []
-    lists_total_difference = 0
+    first_list, second_list = [], []
 
     for line in ids_input.split("\n"):
-        line.split("   ")
-        first_value = int(line.split("   ")[0])
+        first_value, second_value = map(int, line.split())
         first_list.append(first_value)
-        second_value = int(line.split("   ")[1])
         second_list.append(second_value)
 
     first_list.sort()
     second_list.sort()
 
-    for idx in enumerate(first_list):
-        lists_total_difference += abs(first_list[idx[0]] - second_list[idx[0]])
+    lists_total_difference = sum(
+        abs(a - b)
+        for a, b in zip(
+            first_list,
+            second_list,
+        )
+    )
 
     print(lists_total_difference)
 
